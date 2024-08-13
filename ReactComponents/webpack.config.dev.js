@@ -2,9 +2,11 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const { ModuleFederationPlugin } = require("webpack").container;
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: "development",
+  devtool: 'source-map', // to make file readable
   entry: path.resolve(__dirname, "src", "index.js"),
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -71,6 +73,18 @@ module.exports = {
     ],
   },
   optimization: {
+    minimize: false, // Completely disable minification
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: false, // Disable code compression
+          mangle: false, // Disable variable name mangling
+          format: {
+            beautify: true, // Ensure the output is readable
+          },
+        },
+      }),
+    ],
     splitChunks: {
       chunks: "async",
     },

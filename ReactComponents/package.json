@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack build --config webpack.config.js --stats-children",
-    "serve": "webpack serve --config webpack.config.js"
+    "build": "webpack build --config webpack.config.dev.js --stats-children",
+    "serve": "webpack serve --config webpack.config.dev.js"
   },
   "keywords": [],
   "author": "",
